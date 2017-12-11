@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>VR Website</title>
+		<meta name="description" content="VR Website">
+		<meta name="author" content="Grant Kluber">
+
+		<link rel="stylesheet" href="styles.css?v=1.0">
+		<script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+		<script src="https://unpkg.com/aframe-particle-system-component@1.0.10/dist/aframe-particle-system-component.js"></script>
+		<script src="https://unpkg.com/aframe-physics-system@2.1.0/dist/aframe-physics-system.js"></script>
+		<!--<script src="https://unpkg.com/aframe-extras@3.13.1/dist/aframe-extras.js"></script>-->
+		<script src="https://unpkg.com/aframe-animation-component@3.2.5/dist/aframe-animation-component.js"></script>
+		<script src="https://unpkg.com/aframe-gradient-sky@1.0.4/dist/gradientsky.js"></script>
+		<!--<script src="script.js"></script>-->
+		<script src="build/build.js"></script>
+	</head>
+	<body>
+		<a-scene stats physics="iterations:20">
+			<a-assets>
+				<a-asset-image src="assets/images/gun_diff.jpg" crossOrigin="anonymous"></a-asset-image>
+				<a-asset-image src="assets/images/gun_spec.jpg" crossOrigin="anonymous"></a-asset-image>
+				<a-asset-image src="assets/images/gun_normal.png" crossOrigin="anonymous"></a-asset-image>
+				<a-asset-image src="assets/images/decal0.png" crossOrigin="anonymous"></a-asset-image>
+				
+				<a-asset-item id="playerBullet" src="assets/models/player-bullet.json"></a-asset-item>
+				
+				<img id="bulletDecal" src="assets/images/decal0.png" crossOrigin="anonymous">
+			</a-assets>
+			
+			<a-entity id="player"
+				camera="userHeight: 1.6"
+				wasd-controls
+				look-controls
+				restrict-position
+				shoot="direction: 0 0 -1; spaceKeyEnabled: true">
+			</a-entity>
+			
+			<a-entity id="rain" particle-system="preset: rain; color: #24CAFF; particleCount: 5000"></a-entity>
+			<a-entity id="sphere" geometry="primitive: sphere"
+                material="color: #EFEFEF; shader: flat"
+                position="0 0.15 -5"
+                light="type: point; intensity: 5"
+				static-body
+                animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0 -0.10 -5; loop: true"></a-entity>
+			<a-sphere id="sphere"
+                color="#EFEFEF"
+                position="2 3 -2"
+				dynamic-body></a-sphere>
+			<a-box color="#FFFFFF" position="-1 0.5 -1" scale="0.5 0.5 0.5" dynamic-body="mass: 0.5; shape:box"></a-box>
+			<a-box color="#FFFFFF" position="-1 1 -1" scale="0.5 0.5 0.5" dynamic-body="mass: 0.5; shape:box"></a-box>
+			<a-box color="#FFFFFF" position="-1 1.5 -1" scale="0.5 0.5 0.5" dynamic-body="mass: 0.5; shape:box"></a-box>
+			<a-box color="#FFFFFF" position="-1 2 -1" scale="0.5 0.5 0.5" dynamic-body="mass: 0.5; shape:box"></a-box>
+			<a-box color="#FFFFFF" position="-1 2.5 -1" scale="0.5 0.5 0.5" dynamic-body="mass: 0.5; shape:box"></a-box>
+			<a-box color="#FFFFFF" position="-1 3 -1" scale="0.5 0.5 0.5" dynamic-body="mass: 0.5; shape:box"></a-box>
+			<!--<a-entity id="ocean" ocean="density: 20; width: 50; depth: 50; speed: 4"
+                material="color: #9CE3F9; opacity: 0.75; metalness: 0; roughness: 1"
+                rotation="-90 0 0"></a-entity>-->
+			<a-entity id="sky" geometry="primitive: sphere; radius: 5000"
+                material="shader: gradient; topColor: 235 235 245; bottomColor: 185 185 210"
+                scale="-1 1 1"></a-entity>
+			<a-entity id="light" light="type: ambient; color: #888"></a-entity>
+			<a-plane rotation="-90 0 0" static-body width="40" height="40"></a-plane>
+			<!--Left hand-->
+			<!--<a-entity id="teleHand"
+				hand-controls="left"
+				teleport-controls="type: parabolic; collisionEntities: [mixin='voxel'], #ground"
+				></a-entity>-->
+			<!-- Hands. -->
+		  <a-entity id="leftHand" shoot-controls="hand: left" weapon shoot></a-entity>
+		  <a-entity id="rightHandPivot">
+			<a-entity id="rightHand" shoot-controls="hand: right" weapon shoot></a-entity>
+		  </a-entity>
+			
+			
+		</a-scene>
+	</body>
+</html>
