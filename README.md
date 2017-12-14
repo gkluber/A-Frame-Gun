@@ -1,5 +1,5 @@
 # A-Frame-Gun
-The gun from A-Blast reprogrammed to work with A-Frame Physics System.<br>
+The gun from A-Blast VR game reprogrammed to work with A-Frame Physics System.<br>
 <img src="gun.png"></img>
 
 ### Project Specifications:<br>
